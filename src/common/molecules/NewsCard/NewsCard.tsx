@@ -1,0 +1,25 @@
+﻿import { StoryArt } from '@/components/illustrations/StoryArt';
+import { Icon } from '@/common/atoms/Icon';
+import type { News } from '@/models';
+import type { Page } from '@/models';
+
+export interface NewsCardProps {
+  item: News;
+  onNavigate: (page: Page) => void;
+}
+
+export function NewsCard({ item, onNavigate }: NewsCardProps) {
+  return (
+    <article className="news-card" onClick={() => onNavigate('noticia')}>
+      <div className={`news-art ${item.tone}`}>
+        <StoryArt type={item.art} />
+      </div>
+      <div className="news-card-body">
+        <span>{item.category} · 8 oct</span>
+        <h3>{item.title}</h3>
+        <p>{item.excerpt}</p>
+        <button>Leer noticia <Icon name="arrow" size={14} /></button>
+      </div>
+    </article>
+  );
+}
